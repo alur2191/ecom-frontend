@@ -19,14 +19,21 @@ const Product: NextPage<Props> = (props) => {
 	console.log(name);
   return (
     <div className='flex justify-center mt-10'>
-			<div className='w-80 h-80 bg-white rounded-md px-4 py-8'>
+			<div className='flex flex-col items-center gap-3 w-80 h-80 bg-white rounded-md px-4 py-8'>
 				<h1 className="text-3xl font-bold underline ">
 					{name}
 				</h1>
-				<ul>
+				<ul className='flex flex-col items-center gap-3'>
 					<li>Price: ${price}</li>
 					<li>Quantity: {quantity}</li>
 				</ul>
+				<form className='flex flex-col gap-3'>
+					<div>
+						<label htmlFor="quantity">Quantity: </label>
+						<input type="number" name="quantity" id="quantity" placeholder="0" style={{width: 80}}/>
+					</div>
+					<input type="submit" value="Buy" />
+				</form>
 			</div>
     </div>
   )

@@ -1,13 +1,25 @@
 import Link from "next/link"
 
-const Order = (props: {id: string}) => {
+type Props = {
+	order:{
+		orderId: string;
+		name: string;
+		price: number;
+		quantity: number;
+		status: string;
+	}
+}
+
+const Order = (props:Props) => {
+	const{ orderId, name, price, quantity, status } = props.order
+
   return (
 			<>
-				<td><Link href={`/orders/${props.id}`}><a>#123</a></Link></td>
-				<td>Product titleProduct</td>
-				<td>Quantity Product</td>
-				<td>Total Product Product</td>
-				<td>Statu Product Product</td>
+				<td><Link href={`/orders/${orderId}`}><a>{orderId}</a></Link></td>
+				<td>{name}</td>
+				<td>{quantity}</td>
+				<td>{price}</td>
+				<td>{status}</td>
 			</>
 			
   )

@@ -9,7 +9,7 @@ const CreateProduct: NextPage = () => {
 	const [quantity, setQuantity] = useState(null || String)
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e.target.name)
+	
 		switch(e.target.name) {
 			case "name":
 				return setName(e.target.value)
@@ -25,7 +25,7 @@ const CreateProduct: NextPage = () => {
 		try {
 			const body = { name, price, quantity}
 			console.log(body);
-			const createProduct = await fetch(`https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/product`, {
+			const createProduct = await fetch(`https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/product/`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(body),

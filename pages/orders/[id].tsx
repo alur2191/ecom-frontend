@@ -15,11 +15,11 @@ interface Order {
 }
 
 const Order: NextPage<Props>  = (props) => {
-	const { order: {name, price, quantity, trackingNumber, trackingCompany, delivered} } = props
+	const { order: {name, orderId, price, quantity, trackingNumber, trackingCompany, delivered} } = props
 
   return (
     <div className='flex justify-center mt-10'>
-			<div className='w-80 h-80 bg-white rounded-md px-4 py-8'>
+			<div className='flex flex-col items-stretch w-80 h-80 bg-white rounded-md px-4 py-8'>
 				<h1 className="text-3xl font-bold underline ">
 					{name}
 				</h1>
@@ -30,6 +30,8 @@ const Order: NextPage<Props>  = (props) => {
 					<li>Tracking #: {trackingNumber}</li>
 					<li>Tracking Company: {trackingCompany}</li>
 				</ul>
+				
+				<a className='mt-5' href={`/orders/edit/${orderId}`}>Edit Order</a>
 			</div>
     </div>
   )

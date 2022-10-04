@@ -1,4 +1,5 @@
 import type { NextPage, GetServerSideProps } from 'next'
+import { useEffect, useState } from 'react';
 import Order from '../../components/order/order'
 
 interface Props {
@@ -11,12 +12,12 @@ type OrderTypes = {
 	name: string;
 	trackingCompany: string;
 	trackingNumber: string;
+	status: string;
 	orderId: string;
 }
 
 const OrdersPage: NextPage<Props> = (props) => {
 	const { orders } = props
-
   return (
     <div className='px-24 pt-8'>
 			<div className='bg-white rounded-md px-10 py-2'>
@@ -31,10 +32,9 @@ const OrdersPage: NextPage<Props> = (props) => {
 						</tr>
 					</thead>
 					<tbody>
-
 						{orders && orders.map((order:OrderTypes) => {
 							return<tr key={order.orderId} className="bg-white rounded-md px-4 py-8">
-									<Order  id={order.orderId} />
+									<Order order={order} />
 								</tr>
 						})}
 					</tbody>
