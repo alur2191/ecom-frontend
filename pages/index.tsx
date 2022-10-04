@@ -34,7 +34,7 @@ const Home: NextPage<Props> = (props) => {
 export const getServerSideProps: GetServerSideProps = async () => {
 	// Could be refactored with ISR if we use CloudFront, lambda@edge, S3
 	// instead of Amplify which doesn't support ISR
-  const data = await fetch('https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/product')
+  const data = await fetch('https://x552e83j33.execute-api.us-east-2.amazonaws.com/prod/product')
 	const products = await data.json();
 
   return {

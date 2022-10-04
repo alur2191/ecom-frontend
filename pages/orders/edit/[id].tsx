@@ -16,10 +16,8 @@ interface Order {
 }
 
 const Order: NextPage<Props>  = (props) => {
-	
-	const[popup,setPopup] = useState(false)
+	const[popup,setPopup] = useState<Boolean>(false)
 	const { order: {name, price, quantity, status} } = props
-	console.log(props);
   return (
     <div className='flex justify-center mt-10'>
 			
@@ -71,7 +69,7 @@ const Order: NextPage<Props>  = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const { params } = context;
-	const data = await fetch(`https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/order?orderId=${params?.id}`)
+	const data = await fetch(`https://x552e83j33.execute-api.us-east-2.amazonaws.com/prod/order?orderId=${params?.id}`)
 	const order = await data.json();
 	return {
 		props: {

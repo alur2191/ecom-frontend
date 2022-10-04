@@ -46,7 +46,7 @@ const OrdersPage: NextPage<Props> = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await fetch('https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/order')
+  const data = await fetch('https://x552e83j33.execute-api.us-east-2.amazonaws.com/prod/order')
 	const orders = await data.json();
 
   return {
