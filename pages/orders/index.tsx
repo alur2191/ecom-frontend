@@ -1,25 +1,59 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import Order from '../../components/order/order'
 
-const OrderPage: NextPage = () => {
+interface Props {
+	orders:  Array<OrderTypes>;
+}
+
+type OrderTypes = {
+	quantity: number;
+	price: number;
+	name: string;
+	trackingCompany: string;
+	trackingNumber: string;
+	orderId: string;
+}
+
+const OrdersPage: NextPage<Props> = (props) => {
+	const { orders } = props
+
   return (
     <div className='px-24 pt-8'>
 			<div className='bg-white rounded-md px-10 py-2'>
 				<table className='w-full'>
-					<tr>
-						<th>Order #</th>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Total</th>
-						<th>Shipping</th>
-					</tr>
-					<Order id={2} />
-					<Order id={2} />
-					<Order id={2} />
+					<thead>
+						<tr>
+							<th>Order #</th>
+							<th>Product</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{orders && orders.map((order:OrderTypes) => {
+							return<tr key={order.orderId} className="bg-white rounded-md px-4 py-8">
+									<Order  id={order.orderId} />
+								</tr>
+						})}
+					</tbody>
+					
 				</table>
 			</div>
     </div>
   )
 }
 
-export default OrderPage
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await fetch('https://njaovpicbe.execute-api.us-east-2.amazonaws.com/prod/order')
+	const orders = await data.json();
+
+  return {
+    props: {
+      orders
+    }
+  }
+}
+
+export default OrdersPage
