@@ -16,7 +16,7 @@ type ItemsTypes = {
 }
 
 const Home: NextPage<Props> = (props) => {
-	
+
 	const { products: { Items } } = props;
   return (
     <div>
